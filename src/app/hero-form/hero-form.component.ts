@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { NgForm } from '@angular/forms';
+import { HeroServiceService } from '../hero-service.service';
 
 @Component({
   selector: 'app-hero-form',
@@ -14,7 +14,7 @@ export class HeroFormComponent implements OnInit {
   submitted = false;
   heroSaved = [];
 
-  constructor() { }
+  constructor(private _heroService : HeroServiceService) { }
 
   ngOnInit() {
     this.model = new Hero(1, 'Tom Jones', this.powers[1])
@@ -25,6 +25,10 @@ export class HeroFormComponent implements OnInit {
     console.log(this.model);
     let heroSubmitted = {"id" : this.heroSaved.length + 1, "name" : this.model.name, "power" : this.model.power};
     this.heroSaved.push(heroSubmitted);
+
+    // Use a service to transfer the hero list out
+    this._heroService.setHeroes(this.heroSaved);
+
     this.submitted = true;
   }
 
@@ -34,7 +38,7 @@ export class HeroFormComponent implements OnInit {
   }  
 
   newHero() {
-    this.model = new Hero(99, "", "");
+    this.model = new Hero(this.heroSaved.length + 1, "", "");
     this.submitted = false;
   }
 
