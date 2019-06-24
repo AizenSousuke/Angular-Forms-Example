@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-4">
+    <h3>App Hero Form</h3>
+    <div>
+        {{ Diagnostics }}
+    </div>
+    <form [hidden]="submitted" (ngSubmit)="onSubmit()" #HeroForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input #spy type="text" name="name" class="form-control" [(ngModel)]="model.name" #name="ngModel" required>
+        <div>
+          <!-- TODO: Can be removed later on -->
+          {{ spy.className }}
+        </div>
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>
+        <small id="helpId" class="text-muted">
+          <ng-container *ngIf="!model.name; else elseTemplate">
+            Enter your name
+          </ng-container>
+          <ng-template #elseTemplate>
+            Your name is: {{ model.name }}.
+          </ng-template>
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="power">Power</label>
+        <select class="form-control" id="power" [(ngModel)]="model.power" name="power" required>
+            <option *ngFor="let power of powers" [value]="power">{{ power }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!HeroForm.form.valid" (click)="onSubmit(); HeroForm.reset()">Submit</button>
+    </form>
+    <button type="button" class="btn btn-info" (click)="onEdit()" [hidden]="!submitted">Edit</button>
+    <input name="newhero" id="newhero" class="btn btn-dark" type="button" value="NewHero"
+            (click)="newHero(); HeroForm.reset()">
+  </div>
+</div>
