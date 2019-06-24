@@ -12,7 +12,7 @@
       <input #spy type="text" name="name" class="form-control" [(ngModel)]="model.name" #name="ngModel" required>
       <div>
         <!-- TODO: Can be removed later on -->
-        {{ spy.className }}
+        <!--{{ spy.className }}-->
       </div>
       <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>
       <small id="helpId" class="text-muted">
@@ -36,6 +36,6 @@
   </form>
   <!--<button type="button" class="btn btn-info" (click)="onEdit()" [hidden]="!submitted">Edit</button>-->
   <!--New Hero Button-->
-  <input name="newhero" id="newhero" class="btn btn-dark" type="button" value="New Hero"
+  <input name="newhero" id="newhero" class="btn btn-dark my-1" type="button" value="New Hero"
     (click)="newHero(); HeroForm.reset()">
 </div>
