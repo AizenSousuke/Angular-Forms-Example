@@ -12,6 +12,7 @@ export class HeroFormComponent implements OnInit {
   powers = ['Really smart', 'Rich', 'Resourceful'];
   model = new Hero(1, 'Tom Jones', this.powers[1]);
   submitted = false;
+  heroSaved = [];
 
   constructor() { }
 
@@ -19,16 +20,19 @@ export class HeroFormComponent implements OnInit {
   }
 
   onSubmit() {
+    let heroSubmitted = {"id" : this.heroSaved.length + 1, "name" : this.model.name, "power" : this.model.power};
+    this.heroSaved.push(heroSubmitted);
     this.submitted = true;
   }
 
   get Diagnostics() {
     // TODO: Cleanup later
     return JSON.stringify(this.model);
-  }
+  }  
 
   newHero() {
-    this.model = new Hero(42, "", "");
+    this.model = new Hero(99, "", "");
+    this.submitted = false;
   }
 
   onEdit() {

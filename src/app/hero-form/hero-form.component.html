@@ -2,7 +2,10 @@
   <div class="col-xs-4">
     <h3>App Hero Form</h3>
     <div>
-        {{ Diagnostics }}
+      {{ Diagnostics }}
+    </div>
+    <div>
+      {{ heroSaved | json }}
     </div>
     <form [hidden]="submitted" (ngSubmit)="onSubmit()" #HeroForm="ngForm">
       <div class="form-group">
@@ -28,7 +31,7 @@
             <option *ngFor="let power of powers" [value]="power">{{ power }}</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!HeroForm.form.valid" (click)="onSubmit(); HeroForm.reset()">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!HeroForm.form.valid" (click)="HeroForm.reset()">Submit</button>
     </form>
     <button type="button" class="btn btn-info" (click)="onEdit()" [hidden]="!submitted">Edit</button>
     <input name="newhero" id="newhero" class="btn btn-dark" type="button" value="NewHero"
