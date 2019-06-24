@@ -7,8 +7,9 @@
     <div>
       {{ heroSaved | json }}
     </div>
-    <form [hidden]="submitted" (ngSubmit)="onSubmit()" #HeroForm="ngForm">
+    <form [hidden]="submitted" #HeroForm="ngForm" (ngSubmit)="onSubmit(); HeroForm.reset()" >
       <div class="form-group">
+        <!-- Name -->
         <label for="name">Name</label>
         <input #spy type="text" name="name" class="form-control" [(ngModel)]="model.name" #name="ngModel" required>
         <div>
@@ -26,12 +27,13 @@
         </small>
       </div>
       <div class="form-group">
+        <!-- Power -->
         <label for="power">Power</label>
         <select class="form-control" id="power" [(ngModel)]="model.power" name="power" required>
             <option *ngFor="let power of powers" [value]="power">{{ power }}</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!HeroForm.form.valid" (click)="HeroForm.reset()">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!HeroForm.form.valid">Submit</button>
     </form>
     <button type="button" class="btn btn-info" (click)="onEdit()" [hidden]="!submitted">Edit</button>
     <input name="newhero" id="newhero" class="btn btn-dark" type="button" value="NewHero"

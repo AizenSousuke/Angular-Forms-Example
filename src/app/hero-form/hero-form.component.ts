@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { format } from 'url';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-hero-form',
@@ -10,16 +10,19 @@ import { format } from 'url';
 export class HeroFormComponent implements OnInit {
 
   powers = ['Really smart', 'Rich', 'Resourceful'];
-  model = new Hero(1, 'Tom Jones', this.powers[1]);
+  model;
   submitted = false;
   heroSaved = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.model = new Hero(1, 'Tom Jones', this.powers[1])
   }
 
   onSubmit() {
+    
+    console.log(this.model);
     let heroSubmitted = {"id" : this.heroSaved.length + 1, "name" : this.model.name, "power" : this.model.power};
     this.heroSaved.push(heroSubmitted);
     this.submitted = true;
