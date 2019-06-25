@@ -38,11 +38,11 @@
       </select>
     </div>
     <!--Submit Button-->
-    <button type="submit" class="btn btn-success" [disabled]="!HeroForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-success m-1" [disabled]="!HeroForm.form.valid">Submit</button>
   </form>
   <!-- Edit form -->
-  <button type="button" class="btn btn-info" (click)="onEdit(HeroForm)" [hidden]="!submitted">Edit</button>
+  <button type="button" class="btn btn-info m-1" (click)="onEdit(HeroForm)" [hidden]="!submitted">Edit</button>
   <!--New Hero Button-->
-  <input name="newhero" id="newhero" class="btn btn-dark my-1" type="button" value="New Hero"
+  <input name="newhero" id="newhero" class="btn btn-dark m-1" type="button" value="New Hero"
     (click)="newHero(); HeroForm.reset()">
 </div>
